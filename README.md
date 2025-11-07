@@ -1,13 +1,28 @@
 # turbo-octo-fishstick
 
-A Model Context Protocol (MCP) server for Claude Desktop.
+A Model Context Protocol (MCP) server for Claude Desktop that provides useful tools for file operations, system information, and text processing.
+
+## Available Tools
+
+This MCP server provides the following tools:
+
+### File Operations
+- **read_file**: Read the contents of a file from the filesystem
+- **write_file**: Write content to a file on the filesystem
+- **list_directory**: List files and directories in a given path
+
+### System Information
+- **system_info**: Get system information including OS, platform, CPU count, memory usage, and uptime
+
+### Utilities
+- **calculate**: Perform basic mathematical calculations (supports +, -, *, /, parentheses)
+- **text_stats**: Get statistics about text including character count, word count, line count, sentences, and paragraphs
 
 ## Installation
 
 ### Prerequisites
 
-- Node.js 18 or higher (for Node-based servers)
-- Python 3.8 or higher (for Python-based servers)
+- Node.js 18 or higher
 - Claude Desktop app
 
 ### Setup
@@ -19,15 +34,8 @@ cd turbo-octo-fishstick
 ```
 
 2. Install dependencies:
-
-**For Node.js:**
 ```bash
 npm install
-```
-
-**For Python:**
-```bash
-pip install -r requirements.txt
 ```
 
 ## Connecting to Claude Desktop
@@ -44,7 +52,6 @@ To connect this MCP server to Claude Desktop, you need to configure it in the Cl
 
 Edit the configuration file and add your server under the `mcpServers` section:
 
-**For Node.js server:**
 ```json
 {
   "mcpServers": {
@@ -53,24 +60,6 @@ Edit the configuration file and add your server under the `mcpServers` section:
       "args": [
         "/absolute/path/to/turbo-octo-fishstick/index.js"
       ]
-    }
-  }
-}
-```
-
-**For Python server:**
-```json
-{
-  "mcpServers": {
-    "turbo-octo-fishstick": {
-      "command": "python",
-      "args": [
-        "-m",
-        "mcp_server_turbo_octo_fishstick"
-      ],
-      "env": {
-        "PYTHONPATH": "/absolute/path/to/turbo-octo-fishstick"
-      }
     }
   }
 }
@@ -111,22 +100,20 @@ Once Claude Desktop restarts, you can verify the connection by:
 
 ### Running Locally
 
-**Node.js:**
 ```bash
 npm run dev
 ```
 
-**Python:**
+Or directly:
 ```bash
-python -m mcp_server_turbo_octo_fishstick
+node index.js
 ```
 
 ### Testing
 
 Run tests with:
 ```bash
-npm test    # Node.js
-pytest      # Python
+npm test
 ```
 
 ## Troubleshooting
