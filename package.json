@@ -1,0 +1,27 @@
+{
+  "name": "turbo-octo-fishstick",
+  "version": "1.0.0",
+  "description": "A Model Context Protocol (MCP) server for Claude Desktop with token management",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "claude": "./bin/claude.js"
+  },
+  "scripts": {
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "claude",
+    "mcp",
+    "ai",
+    "assistant"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^9.2.12",
+    "conf": "^12.0.0",
+    "chalk": "^5.3.0"
+  }
+}

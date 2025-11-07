@@ -30,6 +30,54 @@ npm install
 pip install -r requirements.txt
 ```
 
+## API Token Setup
+
+Before running the MCP server, you need to configure your Claude API token.
+
+### Getting Your API Token
+
+1. Go to [Anthropic Console](https://console.anthropic.com/settings/keys)
+2. Create a new API key or copy an existing one
+3. The token should start with `sk-ant-`
+
+### Setup Command
+
+Run the interactive setup command:
+
+```bash
+npx . setup-token
+```
+
+Or if you've installed the package globally:
+
+```bash
+npm link
+claude setup-token
+```
+
+The setup wizard will:
+- Prompt you for your Claude API token
+- Validate the token format
+- Securely store it in your system configuration
+- Show you where the token is stored
+
+### Token Storage
+
+Tokens are encrypted and stored locally using [conf](https://github.com/sindresorhus/conf) at:
+
+- **macOS/Linux**: `~/.config/turbo-octo-fishstick-nodejs/config.json`
+- **Windows**: `%APPDATA%\turbo-octo-fishstick-nodejs\Config\config.json`
+
+### CLI Commands
+
+```bash
+# Set up or update your API token
+claude setup-token
+
+# Show help
+claude help
+```
+
 ## Connecting to Claude Desktop
 
 To connect this MCP server to Claude Desktop, you need to configure it in the Claude Desktop configuration file.
@@ -131,11 +179,26 @@ pytest      # Python
 
 ## Troubleshooting
 
+### Token Not Configured
+
+If you see an error about the token not being configured:
+
+```
+❌ Error: Claude API token not configured.
+Please run: claude setup-token
+```
+
+Run the setup command:
+```bash
+claude setup-token
+```
+
 ### Server Not Connecting
 
-1. Check that the path in the configuration is absolute, not relative
-2. Verify Node.js/Python is in your system PATH
-3. Check Claude Desktop logs:
+1. Make sure you've run `claude setup-token` to configure your API token
+2. Check that the path in the configuration is absolute, not relative
+3. Verify Node.js/Python is in your system PATH
+4. Check Claude Desktop logs:
    - **macOS**: `~/Library/Logs/Claude/`
    - **Windows**: `%APPDATA%\Claude\logs\`
    - **Linux**: `~/.config/Claude/logs/`
